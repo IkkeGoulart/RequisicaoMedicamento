@@ -3,7 +3,6 @@ package model;
 import DAO.PedidoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import util.Status;
 import static util.Status.EDICAO;
 
@@ -30,34 +29,34 @@ public class PedidoService {
         this.pedDAO.adicionar(idUsuario);
     }
 
-    public void verificarPedidoEdicao(int idUsuario) throws SQLException{
+    public void verificarPedidoEdicao(int idUsuario) throws SQLException {
         boolean pedidoEmEdicao = this.pedDAO.verificarPedidoEdicao(idUsuario);
-        
-        if(pedidoEmEdicao == false){
+
+        if (pedidoEmEdicao == false) {
             this.adicionar(idUsuario);
             this.verificarPedidoEdicao(idUsuario);
         }
     }
-    
-    public int getIdPedidoEdicao(int idUsuario) throws SQLException{
+
+    public int getIdPedidoEdicao(int idUsuario) throws SQLException {
         int id = this.pedDAO.getIdPedidoEdicao(idUsuario);
         return id;
     }
-    
-    public ArrayList<Pedido> getPedidoPorIdUsuario(int idUsuario) throws SQLException{
-        ArrayList<Pedido> pedList =  this.pedDAO.getPedidoPorIdUsuario(idUsuario);
+
+    public ArrayList<Pedido> getPedidoPorIdUsuario(int idUsuario) throws SQLException {
+        ArrayList<Pedido> pedList = this.pedDAO.getPedidoPorIdUsuario(idUsuario);
         ArrayList<Pedido> pedListSemEdicao = new ArrayList<>();
-        
-        for(Pedido ped : pedList){
-            if(ped.getStatus() != EDICAO){
+
+        for (Pedido ped : pedList) {
+            if (ped.getStatus() != EDICAO) {
                 pedListSemEdicao.add(ped);
-            } 
+            }
         }
-        
+
         return pedListSemEdicao;
     }
-    
-    public void enviar(int id) throws SQLException{
+
+    public void enviar(int id) throws SQLException {
         this.pedDAO.enviar(id);
     }
 

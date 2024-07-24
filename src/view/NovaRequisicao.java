@@ -103,7 +103,7 @@ public class NovaRequisicao extends javax.swing.JFrame {
         lblVoltar.setBackground(new java.awt.Color(204, 0, 51));
         lblVoltar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblVoltar.setForeground(new java.awt.Color(0, 153, 0));
-        lblVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/back.png"))); // NOI18N
+        lblVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/setaEsquerda.png"))); // NOI18N
         lblVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVoltarMouseClicked(evt);

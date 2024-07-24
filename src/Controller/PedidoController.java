@@ -37,48 +37,48 @@ public class PedidoController {
         }
     }
 
-    public int getIdPedidoEdicao(int idUsuario){
+    public int getIdPedidoEdicao(int idUsuario) {
         try {
-             int id = this.pedService.getIdPedidoEdicao(idUsuario);
-             return id;
+            int id = this.pedService.getIdPedidoEdicao(idUsuario);
+            return id;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao pegar o id do pedido");
             return 0;
         }
     }
-    
-    public ArrayList<PedidoModelo> carregarPedidos(UsuarioDTO usuario, HistoricoRequisicao histReq){
+
+    public ArrayList<PedidoModelo> carregarPedidos(UsuarioDTO usuario, HistoricoRequisicao histReq) {
         try {
             ArrayList<Pedido> pedList = this.pedService.getPedidoPorIdUsuario(usuario.getId());
             ArrayList<PedidoModelo> pedModList = new ArrayList<>();
-            
-            for(Pedido ped : pedList){
+
+            for (Pedido ped : pedList) {
                 PedidoModelo pedMod = new PedidoModelo(ped, histReq, usuario);
                 pedModList.add(pedMod);
             }
-            
+
             return pedModList;
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar histórico de pedidos");
             return null;
         }
     }
-    
-    public void enviar(int id){
-        try{
+
+    public void enviar(int id) {
+        try {
             int botaoJop = JOptionPane.showConfirmDialog(null, "Deseja enviar o pedido?", "WARNING", JOptionPane.YES_NO_OPTION);
 
             if (botaoJop == JOptionPane.YES_OPTION) {
                 this.pedService.enviar(id);
                 JOptionPane.showMessageDialog(null, "Pedido enviado com sucesso!");
             }
-            
-        } catch(SQLException ex){
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao enviar o pedido.");
         }
     }
-    
+
     public void alterarStatus(int id, Status novoStatus) {
         try {
             this.pedService.alterarStatus(id, novoStatus);
