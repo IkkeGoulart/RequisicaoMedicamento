@@ -7,9 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import util.PropertiesManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import util.Status;
 import static util.Status.ANALISE;
 import static util.Status.EDICAO;
+import static util.Status.ENTREGUE;
+import static util.Status.TRANSITO;
 
 public class PedidoDAO extends ConexaoDAO {
 
@@ -51,6 +54,44 @@ public class PedidoDAO extends ConexaoDAO {
             id = rs.getInt("id");
         }
         return id;
+    }
+    
+    public ArrayList<Pedido> getPedidoPorIdUsuario(int idUsuario) throws SQLException{
+        String sql = loadSQL("Select.PedidoPorIdUsuario");
+        PreparedStatement pstm = conexao.prepareStatement(sql);
+        pstm.setInt(1, idUsuario);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Pedido> pedList = new ArrayList<>();
+        
+        while(rs.next()){
+            int idPedido = rs.getInt("id");
+            String statusString = rs.getString("status");
+            
+            Status status = null;
+            switch(statusString){
+                case "Em edição" -> {
+                    status = EDICAO;
+                }
+                
+                case "Em análise" -> {
+                    status = ANALISE;
+                }
+                
+                case "Em trânsito" -> {
+                    status = TRANSITO;
+                }
+                
+                case "Entregue" -> {
+                    status = ENTREGUE;
+                }
+            }
+            
+            Pedido ped = new Pedido(idPedido, idUsuario, status);
+            System.out.println(ped);
+            pedList.add(ped);
+        }
+        
+        return pedList;
     }
 
     public void adicionar(int idUsuario) throws SQLException {
@@ -99,13 +140,15 @@ public class PedidoDAO extends ConexaoDAO {
             }
 
             Pedido ped = new Pedido(id, idUsuario, status);
-            System.out.println(ped);
         }
     }
 
     //TIRAR DEPOIS
     public void deletarTudo() throws SQLException {
-        PreparedStatement pstm = conexao.prepareStatement("DELETE FROM APP.PEDIDO");
+        PreparedStatement pstn = conexao.prepareStatement("DELETE FROM APP.PEDIDO_MEDICAMENTO WHERE idPedido=2001");
+        pstn.executeUpdate();
+        PreparedStatement pstm = conexao.prepareStatement("DELETE FROM APP.PEDIDO WHERE id=2001");
+        //PreparedStatement pstm = conexao.prepareStatement("DELETE FROM APP.PEDIDO");
         pstm.executeUpdate();
     }
 

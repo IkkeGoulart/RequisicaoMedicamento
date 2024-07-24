@@ -2,7 +2,10 @@ package model;
 
 import DAO.PedidoDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import util.Status;
+import static util.Status.EDICAO;
 
 public class PedidoService {
 
@@ -39,6 +42,19 @@ public class PedidoService {
     public int getIdPedidoEdicao(int idUsuario) throws SQLException{
         int id = this.pedDAO.getIdPedidoEdicao(idUsuario);
         return id;
+    }
+    
+    public ArrayList<Pedido> getPedidoPorIdUsuario(int idUsuario) throws SQLException{
+        ArrayList<Pedido> pedList =  this.pedDAO.getPedidoPorIdUsuario(idUsuario);
+        ArrayList<Pedido> pedListSemEdicao = new ArrayList<>();
+        
+        for(Pedido ped : pedList){
+            if(ped.getStatus() != EDICAO){
+                pedListSemEdicao.add(ped);
+            } 
+        }
+        
+        return pedListSemEdicao;
     }
     
     public void enviar(int id) throws SQLException{

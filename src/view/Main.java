@@ -20,21 +20,25 @@ public class Main {
 //        login.setVisible(true);
 //        
         UsuarioDTO usuario = new UsuarioDTO(3, "PrefeituraImbe", PREFEITURA);
-        NovaRequisicao nreq = new NovaRequisicao(usuario);
-        nreq.setVisible(true);
+//        NovaRequisicao nreq = new NovaRequisicao(usuario);
+//        nreq.setVisible(true);
         
-        MedicamentoDAO med = new MedicamentoDAO();
-        med.listarTudo();
+//        MedicamentoDAO med = new MedicamentoDAO();
+//        med.listarTudo();
         
-        PedidoMedicamentoDAO pedmed = new PedidoMedicamentoDAO();
+        //PedidoMedicamentoDAO pedmed = new PedidoMedicamentoDAO();
         //pedmed.excluirTudo();
         
-        PedidoDAO ped = new PedidoDAO();
+        //PedidoDAO ped = new PedidoDAO();
         //ped.deletarTudo();
-        ped.mostrarTudo();
+        //ped.mostrarTudo();
         
 //        Farmacia telaF = new Farmacia(usuario);
 //        telaF.show();
+
+
+        HistoricoRequisicao histReq = new HistoricoRequisicao(usuario);
+        histReq.setVisible(true);
     }
 
 }

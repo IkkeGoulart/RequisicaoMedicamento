@@ -10,7 +10,7 @@ import view.Prefeitura;
 
 public class UsuarioController {
 
-    private UsuarioService usuService;
+    private final UsuarioService usuService;
 
     public UsuarioController() {
         this.usuService = new UsuarioService();

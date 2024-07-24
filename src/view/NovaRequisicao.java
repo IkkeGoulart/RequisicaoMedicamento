@@ -3,12 +3,10 @@ package view;
 import Controller.MedicamentoController;
 import Controller.PedidoController;
 import Controller.PedidoMedicamentoController;
+import Controller.TabelaMedicamentosController;
 import DTO.UsuarioDTO;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 public class NovaRequisicao extends javax.swing.JFrame {
 
@@ -16,7 +14,7 @@ public class NovaRequisicao extends javax.swing.JFrame {
     private final PedidoController pedController;
     private final MedicamentoController medController;
     private final PedidoMedicamentoController pedMedController;
-    private final DefaultTableModel model;
+    private final TabelaMedicamentosController tabelaController;
 
     public NovaRequisicao(UsuarioDTO usuarioObj) {
         this.usuario = usuarioObj;
@@ -24,9 +22,9 @@ public class NovaRequisicao extends javax.swing.JFrame {
         this.medController = new MedicamentoController();
         this.pedMedController = new PedidoMedicamentoController();
         initComponents();
-        model = (DefaultTableModel) tblEstoque.getModel();
+        this.tabelaController = new TabelaMedicamentosController(tblEstoque);
         this.pedController.verificarPedidoEdicao(this.usuario.getId()); //Verifica se há um pedido em edição; cria um se não tiver
-        atualizarTabela();
+        tabelaController.atualizarTabela(this.usuario.getId());
     }
 
     @SuppressWarnings("unchecked")
@@ -302,7 +300,7 @@ public class NovaRequisicao extends javax.swing.JFrame {
 
                 this.pedMedController.adicionar(idPedido, idMedicamento, quantidade);
 
-                atualizarTabela();
+                tabelaController.atualizarTabela(this.usuario.getId());
 
                 txtNome.setText("");
                 txtLote.setText("");
@@ -331,46 +329,45 @@ public class NovaRequisicao extends javax.swing.JFrame {
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         String buscaDigitada = jTextField1.getText();
-        buscar(buscaDigitada);
+        tabelaController.buscar(buscaDigitada, this.tblEstoque);
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
         pedController.enviar(idPedido);
         this.pedController.verificarPedidoEdicao(this.usuario.getId());
-        atualizarTabela();
+        tabelaController.atualizarTabela(this.usuario.getId());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menuExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirActionPerformed
         int linha = tblEstoque.getSelectedRow();
-        
-        if(linha != -1){
+
+        if (linha != -1) {
             String nome = tblEstoque.getValueAt(linha, 0).toString();
             String lote = tblEstoque.getValueAt(linha, 1).toString();
-            
+
             int idMedicamento = this.medController.buscarIdPorNomeELote(nome, lote);
             int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
-            
+
             this.pedMedController.excluir(idMedicamento, idPedido);
-            atualizarTabela();
+            tabelaController.atualizarTabela(this.usuario.getId());
         }
     }//GEN-LAST:event_menuExcluirActionPerformed
 
     private void menuQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQtdActionPerformed
         int linha = tblEstoque.getSelectedRow();
-        
-        if(linha != -1){
+
+        if (linha != -1) {
             String nome = tblEstoque.getValueAt(linha, 0).toString();
             String lote = tblEstoque.getValueAt(linha, 1).toString();
-            
+
             int idMedicamento = this.medController.buscarIdPorNomeELote(nome, lote);
             int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
-            
+
             this.pedMedController.editarQuantidade(idMedicamento, idPedido);
-            atualizarTabela();
+            tabelaController.atualizarTabela(this.usuario.getId());
         }
     }//GEN-LAST:event_menuQtdActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
@@ -394,20 +391,4 @@ public class NovaRequisicao extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
-
-    private void buscar(String busca) {
-        TableRowSorter<DefaultTableModel> buscador = new TableRowSorter<>(model);
-        tblEstoque.setRowSorter(buscador);
-        String filtroAa = "(?i)" + busca; //(?i) ignora a diferença entre letras maiúsculas e minúsculas
-        RowFilter<DefaultTableModel, Object> filtroLinha = RowFilter.regexFilter(filtroAa, 0, 1); //Busca apenas na coluna 0(Nome) e 1(Lote)
-        buscador.setRowFilter(filtroLinha);
-        if (busca.length() == 0) {
-            buscador.setRowFilter(null);
-        }
-    }
-    
-    private void atualizarTabela(){
-        int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
-        pedMedController.listarMedicamentos(idPedido, this.model);
-    }
 }

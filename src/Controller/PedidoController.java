@@ -1,15 +1,20 @@
 package Controller;
 
+import DTO.UsuarioDTO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Pedido;
 import model.PedidoService;
 import util.Status;
+import view.HistoricoRequisicao;
+import view.PedidoModelo;
 
 public class PedidoController {
 
-    private PedidoService pedService;
+    private final PedidoService pedService;
 
     public PedidoController() {
         this.pedService = new PedidoService();
@@ -39,6 +44,24 @@ public class PedidoController {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao pegar o id do pedido");
             return 0;
+        }
+    }
+    
+    public ArrayList<PedidoModelo> carregarPedidos(UsuarioDTO usuario, HistoricoRequisicao histReq){
+        try {
+            ArrayList<Pedido> pedList = this.pedService.getPedidoPorIdUsuario(usuario.getId());
+            ArrayList<PedidoModelo> pedModList = new ArrayList<>();
+            
+            for(Pedido ped : pedList){
+                PedidoModelo pedMod = new PedidoModelo(ped, histReq, usuario);
+                pedModList.add(pedMod);
+            }
+            
+            return pedModList;
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar histórico de pedidos");
+            return null;
         }
     }
     

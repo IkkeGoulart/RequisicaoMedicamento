@@ -1,6 +1,7 @@
 package Controller;
 
 import DTO.PedidoDTO;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,24 +54,10 @@ public class PedidoMedicamentoController {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar a quantidade pedida");
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
 
-    public void listarMedicamentos(int idPedido, DefaultTableModel model) {
-        try {
-            ArrayList<PedidoDTO> pedDTOLista = pedMedService.listarMedicamentos(idPedido);
-            Collections.sort(pedDTOLista);
-            model.setRowCount(0); //Reseta a JTable
-
-            for (PedidoDTO pedDTO : pedDTOLista) {
-                Object[] linha = {pedDTO.getNomeMedicamento(), pedDTO.getLote(), pedDTO.getQuantidade(), pedDTO.getTipo().getDescricao()};
-                model.addRow(linha);
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir a lista de medicamentos.");
-        }
-    }
+    
 }
