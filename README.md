@@ -1,6 +1,6 @@
 ## Índice
 - [Funcionalidades](#Funcionalidades)
-- [Tecnologias Utilizadas](#Tecnologias_Utilizadas)
+- [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
 
 # Sistema de Cadastro de Requisições de Medicamentos para Prefeituras
 <p align="justify">Este repositório está sendo desenvolvido como trabalho acadêmico das disciplinas de Programação III, Banco de Dados II e Análise de Projetos e Sistemas do curso técnico em informática do IFRS. O objetivo deste projeto é facilitar a comunicação entre as requisições de medicamentos das prefeituras do litoral norte gaúcho e a unidade da Coordenadoria da Saúde da região.
