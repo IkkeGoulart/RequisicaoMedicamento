@@ -1,3 +1,7 @@
+## Índice
+- [Funcionalidades](#Funcionalidades)
+- [Tecnologias Utilizadas](#TecnologiasUtilizadas)
+
 # Sistema de Cadastro de Requisições de Medicamentos para Prefeituras
 <p align="justify">Este repositório está sendo desenvolvido como trabalho acadêmico das disciplinas de Programação III, Banco de Dados II e Análise de Projetos e Sistemas do curso técnico em informática do IFRS. O objetivo deste projeto é facilitar a comunicação entre as requisições de medicamentos das prefeituras do litoral norte gaúcho e a unidade da Coordenadoria da Saúde da região.
 <br> <br>
@@ -19,5 +23,7 @@ O sistema possui dois tipos de usuários: PREFEITURA e ADMIN. Usuários PREFEITU
 
 ## Futuras Melhorias
 <p align="justify">Para melhorar a funcionalidade e praticidade do sistema de histórico, seria vantajoso a adição de dois novo campos à tabela de Pedido: Data de Requisição e Data de Entrega. Ambas as informações auxiliam em processos relacionados a logísticas e controle de medicamentos, permitindo que a aplicação reflita situações reais com mais precisão.
+<br><br>
+Da mesma forma, a implementação de um sistema de estoque facilitaria a adição de medicamentos ao banco de dados e manteria um controle preciso das quantidades na Coordenadoria. A inclusão de um campo para observações nos pedidos também melhoraria a comunicação e permitiria relatar possíveis transtornos, como a falta de um medicamento requisitado, de forma mais eficiente.
 <br><br>
 Além disso, considera-se interessante a transformação em uma aplicação web, utilizando frameworks como o Spring. O Spring é conhecido por oferecer simplicidade na aplicação da arquitetura MVC(Movel View Controller) em razão de sua eficiência e facilitando a integração com banco de dados. </p>
