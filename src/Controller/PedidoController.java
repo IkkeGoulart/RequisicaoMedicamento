@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Pedido;
-import model.PedidoService;
+import Service.PedidoService;
 import util.Status;
 import view.HistoricoRequisicao;
 import view.PedidoModelo;

@@ -9,8 +9,8 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.PedidoMedicamentoService;
-import model.PedidoService;
+import Service.PedidoMedicamentoService;
+import Service.PedidoService;
 
 
 public class TabelaMedicamentosController {

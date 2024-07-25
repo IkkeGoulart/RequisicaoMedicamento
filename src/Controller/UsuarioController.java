@@ -3,7 +3,7 @@ package Controller;
 import DTO.UsuarioDTO;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.UsuarioService;
+import Service.UsuarioService;
 import view.Farmacia;
 import view.Login;
 import view.Prefeitura;

@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Medicamento;
-import model.MedicamentoService;
+import Service.MedicamentoService;
 import util.TipoMedicamento;
 
 public class MedicamentoController {

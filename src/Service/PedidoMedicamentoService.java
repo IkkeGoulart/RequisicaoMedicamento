@@ -1,11 +1,14 @@
-package model;
+package Service;
 
+import Service.MedicamentoService;
 import DAO.PedidoMedicamentoDAO;
 import DTO.PedidoDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import model.Medicamento;
+import model.PedidoMedicamento;
 
 public class PedidoMedicamentoService {
 

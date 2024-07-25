@@ -1,8 +1,9 @@
-package model;
+package Service;
 
 import DAO.PedidoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Pedido;
 import util.Status;
 import static util.Status.EDICAO;
 

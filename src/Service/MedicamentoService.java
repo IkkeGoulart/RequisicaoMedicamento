@@ -1,8 +1,10 @@
-package model;
+package Service;
 
 import DAO.MedicamentoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Medicamento;
+import model.PedidoMedicamento;
 import util.TipoMedicamento;
 
 public class MedicamentoService {

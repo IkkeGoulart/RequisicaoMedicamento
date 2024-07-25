@@ -1,8 +1,9 @@
-package model;
+package Service;
 
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
 import java.sql.SQLException;
+import model.Usuario;
 import util.TipoUsuario;
 
 public class UsuarioService {
