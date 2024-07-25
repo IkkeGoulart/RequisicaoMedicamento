@@ -1,8 +1,6 @@
 package Controller;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Medicamento;
 import Service.MedicamentoService;
@@ -28,7 +26,6 @@ public class MedicamentoController {
     public int buscarIdPorNomeELote(String nome, String lote) {
         try {
             return this.medService.buscarIdPorNomeELote(nome, lote);
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar o medicamento");
             return -1;

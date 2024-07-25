@@ -3,8 +3,6 @@ package Controller;
 import DTO.UsuarioDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Pedido;
 import Service.PedidoService;
@@ -24,7 +22,7 @@ public class PedidoController {
         try {
             this.pedService.adicionar(idUsuario);
         } catch (SQLException ex) {
-            Logger.getLogger(PedidoController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao adiconar o pedido.");
         }
     }
 
@@ -33,7 +31,7 @@ public class PedidoController {
             this.pedService.verificarPedidoEdicao(idUsuario);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar pedidos em edição");
+            JOptionPane.showMessageDialog(null, "Erro ao buscar pedidos em edição.");
         }
     }
 
@@ -42,7 +40,7 @@ public class PedidoController {
             int id = this.pedService.getIdPedidoEdicao(idUsuario);
             return id;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao pegar o id do pedido");
+            JOptionPane.showMessageDialog(null, "Erro ao pegar o id do pedido.");
             return 0;
         }
     }
@@ -60,7 +58,7 @@ public class PedidoController {
             return pedModList;
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar histórico de pedidos");
+            JOptionPane.showMessageDialog(null, "Erro ao carregar histórico de pedidos.");
             return null;
         }
     }

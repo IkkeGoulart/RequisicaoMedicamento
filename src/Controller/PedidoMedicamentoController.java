@@ -25,6 +25,8 @@ public class PedidoMedicamentoController {
             JOptionPane.showMessageDialog(null, "Medicamento adicionado ao pedido");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar medicamento ao pedido");
+        } catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 

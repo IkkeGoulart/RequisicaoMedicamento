@@ -293,22 +293,17 @@ public class NovaRequisicao extends javax.swing.JFrame {
             String lote = txtLote.getText();
             int quantidade = Integer.parseInt(txtQuantidade.getText());
 
-            try {
-                int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
+            int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
 
-                int idMedicamento = this.medController.buscarIdPorNomeELote(nome, lote);
+            int idMedicamento = this.medController.buscarIdPorNomeELote(nome, lote);
 
-                this.pedMedController.adicionar(idPedido, idMedicamento, quantidade);
+            this.pedMedController.adicionar(idPedido, idMedicamento, quantidade);
 
-                tabelaController.atualizarTabela(this.usuario.getId());
+            tabelaController.atualizarTabela(this.usuario.getId());
 
-                txtNome.setText("");
-                txtLote.setText("");
-                txtQuantidade.setText("");
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
+            txtNome.setText("");
+            txtLote.setText("");
+            txtQuantidade.setText("");
 
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.");
@@ -333,10 +328,14 @@ public class NovaRequisicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
-        pedController.enviar(idPedido);
-        this.pedController.verificarPedidoEdicao(this.usuario.getId());
-        tabelaController.atualizarTabela(this.usuario.getId());
+        if (tblEstoque.getRowCount() == 0) {
+            int idPedido = this.pedController.getIdPedidoEdicao(this.usuario.getId());
+            pedController.enviar(idPedido);
+            this.pedController.verificarPedidoEdicao(this.usuario.getId());
+            tabelaController.atualizarTabela(this.usuario.getId());
+        } else {
+            JOptionPane.showMessageDialog(null, "Adicione medicamentos à lista antes de enviar!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menuExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirActionPerformed

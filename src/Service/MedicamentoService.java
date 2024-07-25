@@ -43,11 +43,9 @@ public class MedicamentoService {
     }
 
     public ArrayList<Medicamento> listarMedicamentos(ArrayList<PedidoMedicamento> pedMedList) throws SQLException {
-        System.out.println("Chegou no medicamentoService");
         ArrayList<Medicamento> medList = new ArrayList();
 
         for (PedidoMedicamento pedMed : pedMedList) {
-            System.out.println("Entrou no for");
             int idMedicamento = pedMed.getIdMedicamento();
             Medicamento med = medDAO.buscarPorId(idMedicamento);
             medList.add(med);

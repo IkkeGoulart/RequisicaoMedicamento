@@ -9,7 +9,7 @@ import static util.Status.EDICAO;
 
 public class PedidoService {
 
-    private PedidoDAO pedDAO;
+    private final PedidoDAO pedDAO;
 
     public PedidoService() {
         this.pedDAO = new PedidoDAO();

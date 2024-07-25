@@ -19,23 +19,15 @@ public class PedidoMedicamentoService {
     }
 
     public void validar(int idPedido, int idMedicamento, int quantidade) {
-        if (idPedido <= 0) {
-            throw new IllegalArgumentException("idPedido deve ser maior que 0");
-        }
-
-        if (idMedicamento <= 0) {
-            throw new IllegalArgumentException("idMedicamento deve ser maior que 0");
-        }
-
-        if (quantidade <= 0) {
-            throw new IllegalArgumentException("quantidade deve ser maior que 0");
+        if (idPedido <= 0 || idMedicamento <= 0 || quantidade <= 0) {
+            throw new IllegalArgumentException("Este medicamento não consta no sistema");
         }
     }
 
     public void adicionar(int idPedido, int idMedicamento, int quantidade) throws SQLException {
         validar(idPedido, idMedicamento, quantidade);
         if (this.medPedDAO.verificarMedicamentosIguais(idPedido, idMedicamento)) {
-            throw new IllegalArgumentException("Existe medicamento já foi adicionado ao pedido");
+            throw new IllegalArgumentException("Este medicamento já foi adicionado ao pedido");
         }
         medPedDAO.adicionar(idPedido, idMedicamento, quantidade);
     }
@@ -43,8 +35,8 @@ public class PedidoMedicamentoService {
     public void excluir(int idMedicamento, int idPedido) throws SQLException {
         this.medPedDAO.excluir(idMedicamento, idPedido);
     }
-    
-    public void editarQuantidade (int idPedido, int idMedicamento, int novaQuantidade) throws SQLException{
+
+    public void editarQuantidade(int idPedido, int idMedicamento, int novaQuantidade) throws SQLException {
         validar(idPedido, idMedicamento, novaQuantidade);
         this.medPedDAO.editarQuantidade(idMedicamento, idPedido, novaQuantidade);
     }
@@ -69,7 +61,6 @@ public class PedidoMedicamentoService {
 
         for (Medicamento med : medList) {
             int idMedicamento = med.getId();
-            System.out.println(idMedicamento);
 
             if (mapa.containsKey(idMedicamento)) {
                 PedidoDTO pedDTO = mapa.get(idMedicamento);
