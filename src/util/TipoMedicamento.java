@@ -4,7 +4,7 @@ public enum TipoMedicamento {
     TERMOLABIL("Termolábil"),
     NAO_TERMOLABIL("Não Termolábil");
 
-    private String descricao;
+    private final String descricao;
 
     TipoMedicamento(String descricao) {
         this.descricao = descricao;

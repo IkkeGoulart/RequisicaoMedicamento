@@ -3,7 +3,6 @@ package DTO;
 import model.Usuario;
 import util.TipoUsuario;
 
-
 public class UsuarioDTO {
     private int id;
     private String usuario;
@@ -36,6 +35,5 @@ public class UsuarioDTO {
     public TipoUsuario getTipo() {
         return tipo;
     }
-    
     
 }

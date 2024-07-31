@@ -8,7 +8,6 @@ public class Medicamento implements Comparable<Medicamento> {
     private String lote;
     private int quantidadeCaixa;
     private TipoMedicamento tipo;
-
     
     public Medicamento(int id, String nome, String lote, int quantidadeCaixa, TipoMedicamento tipo) {
         this.id = id;
@@ -29,7 +28,6 @@ public class Medicamento implements Comparable<Medicamento> {
         this.nome = nome;
         this.lote = lote;
     }
-    
     
     public Medicamento(){
         
@@ -119,7 +117,5 @@ public class Medicamento implements Comparable<Medicamento> {
     public String toString() {
         return "Medicamento{" + "id=" + id + ", nome=" + nome + ", lote=" + lote + ", quantidadeCaixa=" + quantidadeCaixa + ", tipo=" + tipo + '}';
     }
-
-    
 
 }
